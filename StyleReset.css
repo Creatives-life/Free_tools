@@ -1,0 +1,307 @@
+/* Base Styles */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif; 
+  color: #222;
+  background:#eee;
+}
+
+/* Headings */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Horizontal Rule */
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+/* Preformatted Text */
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Links */
+a {
+  background-color: transparent;
+}
+
+/* Abbreviations */
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+
+/* Bold and Strong Text */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/* Code Elements */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Small Text */
+small {
+  font-size: 80%;
+}
+
+/* Subscripts and Superscripts */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Images */
+img {
+  border-style: none;
+}
+
+/* Form Controls */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+/* Buttons and Inputs */
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+  -webkit-appearance: button;
+}
+
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner,
+button::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring,
+button:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/* Fieldsets */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/* Legends */
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+/* Progress */
+progress {
+  vertical-align: baseline;
+}
+
+/* Textareas */
+textarea {
+  overflow: auto;
+}
+
+/* Number Inputs */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/* Search Inputs */
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* File Upload Button */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+/* Details and Summary */
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+/* Templates */
+template {
+  display: none;
+}
+
+/* Hidden Elements */
+[hidden] {
+  display: none;
+}
+
+
+#main {
+      /*margin: 0 auto;
+      max-width: 800px;
+      width: 100%; 
+      box-sizing: border-box;*/
+      padding: 1em;
+      padding-top: 6rem;
+      margin-bottom: 7rem; /* so proper anchor doesn't cover content when scrolled to bottom of page */
+    }
+    #input-wrapper-wrapper {
+      position: fixed;
+      width: 100%;
+      height: 6rem;
+      top: 0;
+      left: 0;
+      padding: 0.5rem;
+      box-sizing: border-box;
+    }
+    @media screen and (max-width: 600px) {
+      #main {
+        padding: 0.25rem;
+        padding-top: 6rem;
+      }
+      #input-wrapper-wrapper {
+        padding: 0.25rem;
+      }
+    }
+    .content-box {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+      border-radius: 2px;
+      background:white;
+      margin: 0 auto;
+      margin-top: 1em;
+      max-width: 800px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #input {
+      resize: none;
+      border: none;
+      outline: none;
+      width: 100%;
+      height: 100%;
+      padding:0.5em;
+      font-size: 1.15em;
+    }
+    #input-wrapper {
+      height: 100%;
+      overflow: hidden;
+      margin-top:0;
+    }
+    #output-wrapper {
+      height: fit-content;
+      padding: 1em;
+    }
+    #output {
+      font-size: 1.4em;
+      word-break: break-word;
+    }
+    #description p:last-child {
+      margin-bottom: 0; 
+    }
+    #description h1:first-child {
+      margin-top: 0; 
+    }
+    #background {
+      z-index:-1;
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background-size: 20vw;
+      background-image:url(https://img.icons8.com/emoji/48/heart-suit.png); opacity:0.05; background-size: unset;
+    }
+    #logo {
+      text-align: center;
+      font-size: 5.5vw;
+      font-family: 'Pacifico', cursive;
+      color: white;
+      text-shadow: 0px 1px 2px #444;
+      margin-top: 0.1em;
+      margin-bottom: 0.6em; 
+    }
+    
+    #description *:not(pre) > code {
+      background: #f1f1f1;
+      font-family: monospace;
+      font-size: 1.1em;
+      padding: 0.3em; 
+    }
+    #description pre {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0.5em;
+      background: #f1f1f1;
+      font-family: monospace;
+    }
+    @media only screen and (max-width: 850px) {
+      #logo {
+        font-size: 10.5vw;
+      }
+    }
+    @media only screen and (max-width: 650px) {
+      #output {
+        font-size: 1em;
+      }
+    }
+
+

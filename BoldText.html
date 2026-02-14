@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bold Text Generator</title>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <meta http-equiv="refresh" content="30"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico" rel="stylesheet">
+  <link rel="stylesheet" href="menu.css">
+  <script src="https://kit.fontawesome.com/7d180b25b5.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</head>
+
+
+<nav class="navbar navbar-expand-sm bg-primary sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="logo.png" alt="Logo" style="width: 30px;">
+    </a>
+
+    <button class="navbar-toggler" style="background-color: rgb(255, 255, 255);" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="thumbnail.html">Thumbnail</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">More</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="ImageConverter.html">Image Converter</a></li>
+            <li><a class="dropdown-item" href="BoldText.html">Bold Text Generator</a></li>
+            <li><a class="dropdown-item" href="#">Coming soon</a></li>
+          </ul>
+        </li>   
+      </ul>
+  </div>
+</nav>
+
+</head>
+<body>
+    <div class="container" style="margin-top: 10px; text-align: center;">
+        <h1 style="text-align: center; color: #0d6efd; font-size: 3vw;">Bold Text Generator</h1>
+        <div id="background"></div>
+
+  <div id="main">
+    
+    <p id="logo" style="display:none;">Bold Text</p>
+    
+    <div id="input-wrapper-wrapper" style="z-index:10;">
+      <div class="content-box" id="input-wrapper" style="margin: 0 auto;">
+        <textarea id="input" placeholder="Add text here, then scroll down ↓" value=""></textarea>
+      </div>
+    </div>
+
+    <div class="content-box" id="output-wrapper" style="display:none;">
+      <div id="output"><p style="margin: 0;opacity: 0.7;"><span style="display:inline-block; width:max-content;">ᕕ( ᐛ )ᕗ</span></p></div>
+    </div>
+
+    <div class="content-box" style="background:unset; border:none; box-shadow:none; max-width: 970px; min-height:250px; text-align: center;">
+   
+    <!-- text-generator-sites - main -->
+
+    </div>
+    </div><br>
+    <div class="content-box" id="description" style="padding:1em;">
+      <div><h1 id="bold-text-generator">Bold Text Generator</h1>
+<p>Hi there! Have you ever wondered how people make their text look bold on social media posts or bios, especially when there are no formatting options available? This web app helps by converting regular text into bold Unicode characters that you can easily copy and paste into your posts or profiles. These bold characters are not styled versions of regular text, but actual Unicode characters that look bold. That's why you can copy and paste them — unlike styled text, which is tied to specific fonts.
+
+If you're curious about how this text formatting works, let's take a look at Unicode — an international, non-profit organization that sets the rules for how computers convert binary data (zeros and ones) into text characters, like the ones you're reading now.
+
+In the early days of computing, there was no standard way to represent text across different programs and systems. As computers and the internet evolved, this lack of a universal standard became a problem. Programmers needed a shared "language" to communicate with each other, but without it, each system used its own unique code, making communication between systems difficult.
+
+To solve this, a group of tech professionals came together in the early 1980s to create a universal code called Unicode. The goal was to create a single system that could support all languages and characters, making it easier for computers to communicate globally.
+
+Unicode eventually included not only standard text characters but also variations like bold and italic styles. This was especially useful for early messaging systems, where HTML and CSS weren't yet available. These bold Unicode characters allow you to format your text simply and effectively without relying on specific fonts.
+
+So, this isn't really a "bold font generator" — it's more accurately a "bold Unicode text generator." You can copy and paste the bold characters because they are actual characters, not just styled versions of regular text.</p>
+
+      
+  </div>
+    <br><br>
+
+              <hr>
+
+
+
+              
+              <div class="container">
+                <footer class="py-5">
+                  <div class="row">
+                    <div class="col-6 col-md-2 mb-3">
+                      <h5 id="footer_menu">Features</h5>
+                      <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0 text-body-secondary">Home</a></li>
+                        <li class="nav-item mb-2"><a href="thumbnail.html" class="nav-link p-0 text-body-secondary">Thumbnail</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+                      </ul>
+                    </div>
+              
+                    <div class="col-6 col-md-2 mb-3">
+                      <h5 id="footer_menu">Links</h5>
+                      <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="PrivacyPolicy.html" class="nav-link p-0 text-body-secondary">Privacy & Policy</a></li>
+                        <li class="nav-item mb-2"><a href="TermsConditions.html" class="nav-link p-0 text-body-secondary">Terms & Conditions</a></li>
+                        <li class="nav-item mb-2"><a href="Disclaimer.html" class="nav-link p-0 text-body-secondary">Disclaimer</a></li>
+                        <li class="nav-item mb-2"><a href="faq.html" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                        <!-- <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li> -->
+                      </ul>
+                    </div>
+              
+                    <div class="col-6 col-md-2 mb-3">
+                      <h5 id="footer_menu">Social Media</h5>
+                      <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://www.facebook.com/SelinaDarkRose/" class="nav-link p-0 text-body-secondary">Facebook</a></li>
+                        <li class="nav-item mb-2"><a href="https://infinite-canvas.medium.com/" class="nav-link p-0 text-body-secondary">Medium</a></li>
+                        <li class="nav-item mb-2"><a href="https://github.com/Creatives-life" class="nav-link p-0 text-body-secondary">Github</a></li>
+                        <li class="nav-item mb-2"><a href="https://x.com/nft_art_canvas" class="nav-link p-0 text-body-secondary">Twitter</a></li>
+                        <!-- <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Instagram</a></li> -->
+                      </ul>
+                    </div>
+              
+                    <div class="col-md-5 offset-md-1 mb-3">
+                      <div class="subscription-form">
+                        <h2 id="newcolor">Subscribe For Newsletter</h2>
+                        <form id="subscribeForm" onsubmit="return validateForm()">
+                            <!-- <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required> -->
+                
+                            <!-- <label for="email">Email:</label> -->
+                            <input type="email" id="email" name="email" placeholder="Email address" required>
+                
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </form>
+                        <div id="message"></div>
+                    </div>
+                      <br>
+                      <!-- <strong>Email: </strong><a href="mailto:tech-dev.blockchain
+                      @ud.me">tech-dev.blockchain</a> -->
+                    </div>
+                      </form>
+                    </div>
+                  </div>
+                  <hr>
+              
+                  <div class="container bg-primary">
+                    
+                    <ul class="list-unstyled d-flex justify-content-center">
+                      <li class="ms-3"><a href="https://www.facebook.com/SelinaDarkRose/"><i class="fa-brands fa-facebook"></i>
+                      </a></li>
+                      <li class="ms-3"><a href="https://infinite-canvas.medium.com/"><i class="fa-brands fa-medium"></i>
+                      </a></li>
+                      <li class="ms-3"><a href="https://github.com/Creatives-life"><i class="fa-brands fa-github"></i>
+                      </a></li>
+                      <li class="ms-3"><a href="https://x.com/nft_art_canvas"><i class="fa-brands fa-twitter"></i>
+                      </a></li>
+                      <li class="ms-3"><a href="#"><i class="fa-brands fa-instagram"></i>
+                      </a></li>
+                    </ul>
+                    <p style="color: #ffffff; font-weight: bolder; text-align: center;">© Online Tools. All rights reserved.</p>
+                  </div>
+                </footer>
+              </div>
+              <script src="QuickLift.js"></script>
+  <script>
+    Lift.start({
+      'content-url': '/',
+      'assets': [
+        'StyleReset.css',
+      ]
+    });
+  </script>
+</body>
+</html>

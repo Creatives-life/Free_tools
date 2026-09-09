@@ -11,10 +11,6 @@ var snapSize = document.querySelector('#snapsize');
 var context = canvas.getContext('2d');
 var slider = document.querySelector('#slider');
 
-// Set target FHD resolution
-const TARGET_W = 1080;
-const TARGET_H = 1920;
-
 function showInput(id, opt) {
     document.getElementById('select-file').style.display = 'none';
     document.getElementById(id).style.display = '';
@@ -31,9 +27,11 @@ window.addEventListener("load", loadPage);
 // --- Video Logic ---
 
 function timeUpdate() {
-    slider.setAttribute('max', Math.ceil(video.duration));
-    slider.value = video.currentTime;
-    if(videoInfo) {
+    if (slider) {
+        slider.setAttribute('max', Math.ceil(video.duration));
+        slider.value = video.currentTime;
+    }
+    if (videoInfo) {
         videoInfo.style.display = 'block';
         videoInfo.innerHTML = [
             "Video Resolution: " + video.videoWidth + "x" + video.videoHeight,
@@ -48,26 +46,25 @@ video.addEventListener('timeupdate', timeUpdate);
 video.addEventListener('loadedmetadata', function () {
     video.play();
     video.pause();
-    resize(); // Setup canvas size immediately
+    resize(); // Setup canvas size based on loaded video resolution
 }, false);
 
 function resize() {
-    // Force the canvas to be exactly FHD regardless of display size
-    canvas.width = TARGET_W;
-    canvas.height = TARGET_H;
+    // Automatically match native video dimensions (handles 16:9, 9:16, etc.)
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
     
-    if(videow) videow.value = TARGET_W;
-    if(snapSize) snapSize.innerHTML = TARGET_W + "x" + TARGET_H;
+    if (videow) videow.value = video.videoWidth;
+    if (snapSize) snapSize.innerHTML = video.videoWidth + "x" + video.videoHeight;
 }
 
 function snapPicture() {
-    // Fill background with black (in case of aspect ratio mismatch)
-    context.fillStyle = "#000";
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    // Resize dynamically in case video dimensions changed
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
     
-    // Draw video frame to the high-res canvas
-    // This scales the video frame up/down to fit 1080x1920
-    context.drawImage(video, 0, 0, TARGET_W, TARGET_H);
+    // Draw video frame to canvas at native resolution
+    context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 }
 
 function selectVideo() {
@@ -84,24 +81,22 @@ function loadVideoFile() {
         video.src = URL.createObjectURL(fileInput);
         snap.disabled = false;
         save.disabled = false;
-        videoControls.style.display = '';
+        if (videoControls) videoControls.style.display = '';
     }
 }
 
 function savePicture() {
-    // CRITICAL: Use image/jpeg with 1.0 quality for FHD clarity
-    // Default toDataURL() often compresses heavily
     var dataURL = canvas.toDataURL("image/jpeg", 1.0);
     
     var link = document.getElementById("imagelink");
-    if(!link) {
+    if (!link) {
         link = document.createElement('a');
         link.id = "imagelink";
     }
     
     link.href = dataURL;
     var rnd = Math.round((Math.random() * 1000));
-    link.setAttribute("download", "Snapshot_FHD_" + rnd + ".jpg");
+    link.setAttribute("download", "Snapshot_" + canvas.width + "x" + canvas.height + "_" + rnd + ".jpg");
     link.click();
 }
 

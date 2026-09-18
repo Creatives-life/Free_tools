@@ -214,7 +214,7 @@ function convertImage() {
         text: "@TowsifAktar ",
         position: "bottom-right",
         color: [255, 255, 255],
-        opacity: 0.10,
+        opacity: 0.30,
         minSize: 8,
         addShadow: true,
         addStroke: true

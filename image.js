@@ -1,6 +1,10 @@
 let originalImage = null;
 const imagePreview = document.getElementById('imagePreview');
 
+// Preload the Facebook logo image file
+const fbLogoImg = new Image();
+fbLogoImg.src = 'Facebooklogo.png';
+
 // Handle image upload
 document.getElementById('imageInput').addEventListener('change', function(e) {
     const file = e.target.files[0];
@@ -93,7 +97,7 @@ function colorCorrectAndNaturalLight(ctx, width, height) {
 /**
  * 3. Watermark Calculations and Rendering
  */
-function getWatermarkPosition(positionStr, imgW, imgH, textW, textH, padding = 40) {
+function getWatermarkPosition(positionStr, imgW, imgH, totalW, totalH, padding = 40) {
     let x, y;
     switch (positionStr.toLowerCase()) {
         case 'top-left':
@@ -101,21 +105,21 @@ function getWatermarkPosition(positionStr, imgW, imgH, textW, textH, padding = 4
             y = padding;
             break;
         case 'top-right':
-            x = imgW - textW - padding;
+            x = imgW - totalW - padding;
             y = padding;
             break;
         case 'bottom-left':
             x = padding;
-            y = imgH - textH - padding;
+            y = imgH - totalH - padding;
             break;
         case 'bottom-right':
-            x = imgW - textW - padding;
-            y = imgH - textH - padding;
+            x = imgW - totalW - padding;
+            y = imgH - totalH - padding;
             break;
         case 'center':
         default:
-            x = (imgW - textW) / 2;
-            y = (imgH - textH) / 2;
+            x = (imgW - totalW) / 2;
+            y = (imgH - totalH) / 2;
             break;
     }
     return { x, y };
@@ -126,41 +130,61 @@ function processSingleWatermark(ctx, imgW, imgH, config) {
     ctx.font = `${fontSize}px sans-serif`;
     ctx.textBaseline = 'top';
 
-    const metrics = ctx.measureText(config.text);
-    const textWidth = metrics.width;
-    const textHeight = fontSize; // Baseline approximation
+    // Measure text component ("TowsifAktar")
+    const textPart = "TowsifAktar";
+    const textMetrics = ctx.measureText(textPart);
+    const textWidth = textMetrics.width;
+    const textHeight = fontSize;
+
+    // Logo dimensions scaled with font size and user slider multiplier
+    const logoSize = Math.round(fontSize * config.logoSizeMultiplier);
+    const spacing = Math.round(fontSize * 0.3); // space between logo and text
+    const totalWatermarkWidth = logoSize + spacing + textWidth;
+    const totalWatermarkHeight = Math.max(logoSize, textHeight);
 
     const { x, y } = getWatermarkPosition(
         config.position, 
         imgW, 
         imgH, 
-        textWidth, 
-        textHeight
+        totalWatermarkWidth, 
+        totalWatermarkHeight
     );
+
+    // Vertical centering offset for logo relative to text baseline
+    const logoY = y + (textHeight - logoSize) / 2;
+    const textY = y;
 
     // 1. Draw Shadow
     if (config.addShadow) {
         ctx.save();
         ctx.fillStyle = `rgba(0, 0, 0, 0.30)`;
         ctx.filter = 'blur(2px)';
-        ctx.fillText(config.text, x + 2, y + 2);
+        ctx.fillText(textPart, x + logoSize + spacing + 2, textY + 2);
         ctx.restore();
     }
 
-    // 2. Draw Stroke
+    // 2. Draw Stroke (for text)
     if (config.addStroke) {
         ctx.save();
         ctx.strokeStyle = `rgba(0, 0, 0, ${config.opacity})`;
         ctx.lineWidth = 1;
-        ctx.strokeText(config.text, x, y);
+        ctx.strokeText(textPart, x + logoSize + spacing, textY);
         ctx.restore();
     }
 
-    // 3. Draw Text Fill
+    // 3. Draw Facebook Logo Image (using Facebooklogo.png file)
+    if (fbLogoImg.complete && fbLogoImg.naturalWidth > 0) {
+        ctx.save();
+        ctx.globalAlpha = config.opacity;
+        ctx.drawImage(fbLogoImg, x, logoY, logoSize, logoSize);
+        ctx.restore();
+    }
+
+    // 4. Draw Text Fill
     ctx.save();
     const [r, g, b] = config.color;
     ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${config.opacity})`;
-    ctx.fillText(config.text, x, y);
+    ctx.fillText(textPart, x + logoSize + spacing, textY);
     ctx.restore();
 }
 
@@ -208,16 +232,20 @@ function applyConvolution(ctx, width, height, weights) {
 function convertImage() {
     if (!originalImage) return;
 
-    // Default configuration (Matching Python constants)
+    // Get dynamic logo size multiplier from slider control
+    const logoScaleInput = document.getElementById('logoSizeRange');
+    const logoSizeMultiplier = logoScaleInput ? parseFloat(logoScaleInput.value) : 1.0;
+
+    // Default configuration
     const LONG_SIDE = 2048;
     const WATERMARK_CONFIG = {
-        text: "@TowsifAktar ",
         position: "bottom-right",
         color: [255, 255, 255],
         opacity: 0.30,
         minSize: 8,
         addShadow: true,
-        addStroke: true
+        addStroke: true,
+        logoSizeMultiplier: logoSizeMultiplier
     };
 
     // 1. Long-side scaling calculation

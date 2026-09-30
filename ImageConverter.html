@@ -63,6 +63,11 @@
             </select>
             
             <br><br>
+            <!-- Added Logo Size Adjustment Control -->
+            <label for="logoSizeRange" style="font-weight: bold; margin-right: 10px;">Logo Size Scale:</label>
+            <input type="range" id="logoSizeRange" min="0.5" max="2.0" step="0.1" value="1.0" style="vertical-align: middle;">
+            <br><br>
+
             <button onclick="convertImage()">Convert & Download</button>
         </div>
 
@@ -74,6 +79,7 @@
         <ol style="text-align: left;">
             <li>Click on "Choose File" to upload an image.</li>
             <li>Select the desired format (JPEG, PNG, GIF, BMP or WebP).</li>
+            <li>Adjust the Facebook logo size slider if needed.</li>
             <li>Click on "Convert & Download" to save the converted image.</li>
         </ol>
     </div>
